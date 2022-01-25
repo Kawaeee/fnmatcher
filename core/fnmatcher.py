@@ -98,7 +98,7 @@ def match(opt):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--source-directory", type=str, help="Path to source directory/folder")
     parser.add_argument("--target-directory", type=str, help="Path to target directory/folder")
     parser.add_argument("--threshold", type=float, default=0.9, help="Text similarity threshold")
@@ -106,4 +106,8 @@ if __name__ == "__main__":
     parser.add_argument("--debug", action="store_true", help="Enable debug logging mode")
 
     args = parser.parse_args()
-    match(args)
+    
+    try:
+        match(args)
+    except:
+        parser.print_help()
